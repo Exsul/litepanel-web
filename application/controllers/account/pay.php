@@ -1,7 +1,8 @@
 <?php
 /*
 * @LitePanel
-* @Version: 1.1 [dev]
+* @Version: 1.0.1
+* @Date: 29.12.2012
 * @Developed by QuickDevel
 */
 class payController extends Controller {
@@ -46,24 +47,29 @@ class payController extends Controller {
 				$password1 = $this->config->rk_password1;
 				
 				$userid = $this->user->getId();
-				
 				$invoiceData = array(
 					'user_id'			=> $userid,
 					'invoice_ammount'	=> $ammount,
 					'invoice_status'	=> 0
 				);
 				$invid = $this->invoicesModel->createInvoice($invoiceData);
-				
+/*				
 				$signature = md5("$login:$ammount:$invid:$password1");
 				
 				$url = "$server/Index.aspx";
-				/* Параметры: */
+				/* Параметры: 
 				$url .= "?MrchLogin=$login";
 				$url .= "&OutSum=$ammount";
 				$url .= "&InvId=$invid";
-				$url .= "&SignatureValue=$signature";
-				$url .= "&Desc=Пополнение баланса аккаунта (ID " . $userid . ")";
-				
+				$url .= "&SignatureValue=$signature";*/
+ $purp = "Пополнение баланса аккаунта (ID " . $userid . ")";
+ $shop_id = 213350;
+ $itemid = $invid;
+ $sum = $ammount;
+ $mail = $this->user->GetEmail();
+ 
+ $url = "https://sprypay.ru/sppi/?spShopId={$shop_id}&spShopPaymentId={$itemid}&spAmount={$sum}";
+ $url .= "&spCurrency=rur&spPurpose={$purp}&spUserEmail={$mail}&lang=ru";
 				$this->data['status'] = "success";
 				$this->data['url'] = $url;
 			} else {

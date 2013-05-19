@@ -1,7 +1,8 @@
 <?php
 /*
 * @LitePanel
-* @Version: 1.1 [dev]
+* @Version: 1.0.1
+* @Date: 29.12.2012
 * @Developed by QuickDevel
 */
 ?>
