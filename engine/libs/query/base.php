@@ -10,12 +10,24 @@ class QueryBase {
 	
 	protected $socket;
 
-  public function connect( $ip, $port ) {
+  public function connect( $ip, $port, $connect = true ) {
     $this->ip = $ip;
     $this->port = $port;
 
+    if ($connect)
+      UDPConnect();
+  }
+
+  protected function UDPConnect()
+  {
     $this->socket = fsockopen('udp://' . $this->ip, $this->port, $sockError, $sockErrorNum, 2);
     socket_set_timeout($this->socket, 1);
+  }
+
+  protected function TCPConnect()
+  {
+    $this->socket = fsockopen('tcp://' . $this->ip, $this->port, $sockError, $sockErrorNum, 2);
+    socket_set_timeout($this->socket, 1);    
   }
 
   public function disconnect() {
