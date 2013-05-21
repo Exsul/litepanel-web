@@ -7,7 +7,7 @@
 class valveQuery extends QueryBase {
 
 	private function sendPacket() {
-    base::sendPacket("\xFF\xFF\xFF\xFFTSource Engine Query\x00");
+    $this->write("\xFF\xFF\xFF\xFFTSource Engine Query\x00");
 	}
 	
 	public function getInfo() {

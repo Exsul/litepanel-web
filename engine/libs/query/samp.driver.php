@@ -6,6 +6,26 @@
 */
 class sampQuery extends QueryBase {
 
+ public function sendPacket($packet) {
+    $ipParts = explode('.', $this->ip);
+
+    $packet = "SAMP";
+    $packet .= chr($ipParts[0]);
+    $packet .= chr($ipParts[1]);
+    $packet .= chr($ipParts[2]);
+    $packet .= chr($ipParts[3]);
+
+    $packet .= chr($this->port & 0xFF);
+    $packet .= chr($this->port >> 8 & 0xFF);
+
+    $packet .= 'i';
+
+    if (isset($data))
+      $packet .= $data;
+    $this->write($packet);
+  }
+
+
 	public function getInfo() {
 		$this->sendPacket("SAMP");
 		
