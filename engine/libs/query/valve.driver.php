@@ -5,11 +5,7 @@
 * @Developed by QuickDevel
 */
 class valveQuery extends QueryBase {
-	
-	public function disconnect() {
-		fclose($this->socket);
-	}
-	
+
 	private function sendPacket() {
     base::sendPacket("\xFF\xFF\xFF\xFFTSource Engine Query\x00");
 	}

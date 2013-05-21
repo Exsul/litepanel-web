@@ -6,10 +6,6 @@
 */
 class mtasaQuery extends QueryBase {
 
-	public function disconnect() {
-		fclose($this->socket);
-	}
-	
 	private function sendPacket() {
     base::sendPacket("s");
 	}
