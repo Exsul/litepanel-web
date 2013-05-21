@@ -13,7 +13,7 @@ class Config {
 			$this->data = array_merge($this->data, $config);
 			return true;
 		}
-		exit('Ошибка: Не удалось загрузить файл конфигурации!');
+		exit(L("conf_missed"));
 	}
 	
 	public function __set($key, $val){

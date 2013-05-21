@@ -10,6 +10,7 @@ set_time_limit(0);
 define('ENGINE_DIR', dirname(__FILE__) . '/engine/');
 define('APPLICATION_DIR', dirname(__FILE__) . '/application/');
 
+require_once(ENGINE_DIR . 'translate.php');
 require_once(ENGINE_DIR . 'main/controller.php');
 require_once(ENGINE_DIR . 'main/model.php');
 

@@ -34,7 +34,7 @@ class orderController extends Controller {
 	public function ajax() {
 		if(!$this->user->isLogged()) {  
 	  		$this->data['status'] = "error";
-			$this->data['error'] = "Вы не авторизированы!";
+			$this->data['error'] = "You not authorised for this action";
 			return json_encode($this->data);
 		}
 		if($this->user->getAccessLevel() < 1) {
