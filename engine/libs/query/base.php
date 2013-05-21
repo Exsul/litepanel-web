@@ -17,6 +17,30 @@ class QueryBase {
     $this->socket = fsockopen('udp://' . $this->ip, $this->port, $sockError, $sockErrorNum, 2);
     socket_set_timeout($this->socket, 1);
   }
+
+  public function disconnect() {
+		fclose($this->socket);
+	}
+
+  private function sendPacket($header, $data) {
+		$ipParts = explode('.', $this->ip);
+		
+		$packet = $header;
+		$packet .= chr($ipParts[0]);
+		$packet .= chr($ipParts[1]);
+		$packet .= chr($ipParts[2]);
+		$packet .= chr($ipParts[3]);
+
+		$packet .= chr($this->port & 0xFF);
+		$packet .= chr($this->port >> 8 & 0xFF);
+
+		$packet .= 'i';
+
+    if (isset($data))
+      $packet .= $data;
+
+		$this->write($packet);
+	}
 	
 	protected function write($bytes) {
 		return fwrite($this->socket, $bytes);

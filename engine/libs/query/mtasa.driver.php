@@ -11,9 +11,7 @@ class mtasaQuery extends QueryBase {
 	}
 	
 	private function sendPacket() {
-		$packet = "s";
-		
-		$this->write($packet);
+    base::sendPacket("s");
 	}
 	
 	public function getInfo() {
