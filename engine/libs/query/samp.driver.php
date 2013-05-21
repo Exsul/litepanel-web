@@ -5,12 +5,6 @@
 * @Developed by QuickDevel
 */
 class sampQuery extends QueryBase {
-	public function connect($ip, $port) {
-		$this->ip = $ip;
-		$this->port = $port;
-		$this->socket = fsockopen('udp://' . $this->ip, $this->port, $sockError, $sockErrorNum, 2);
-		socket_set_timeout($this->socket, 1);
-	}
 	
 	public function disconnect() {
 		fclose($this->socket);

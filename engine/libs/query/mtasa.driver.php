@@ -5,13 +5,7 @@
 * @Developed by QuickDevel
 */
 class mtasaQuery extends QueryBase {
-	public function connect($ip, $port) {
-		$this->ip = $ip;
-		$this->port = $port;
-		$this->socket = fsockopen('udp://' . $this->ip, $this->port + 123, $sockError, $sockErrorNum, 2);
-		socket_set_timeout($this->socket, 1);
-	}
-	
+
 	public function disconnect() {
 		fclose($this->socket);
 	}
